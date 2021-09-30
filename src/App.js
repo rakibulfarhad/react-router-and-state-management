@@ -1,23 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Home from './componants/Home/Home';
+import Employee from './componants/Employee/Employee';
+import SingleEmployee from './componants/SingleEmployee/SingleEmployee';
+import NotFound from './componants/NotFound/NotFound';
+import Navbar from './componants/Navbar/Navbar';
+import { Button } from 'react-bootstrap';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+        <Navbar/>
+        <Switch>
+          <Route exact path="/">
+            <Home/>
+          </Route>
+          <Route exact path="/home">
+            <Home/>
+          </Route>
+          <Route exact path="/employee">
+            <Employee/>
+          </Route>
+          <Route exact path="/employee/:id">
+            <SingleEmployee/>
+          </Route>
+          <Route path="*">
+            <NotFound/>
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
